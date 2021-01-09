@@ -1,0 +1,30 @@
+.dataContact  {
+    text-align: left;
+    font-family: sans-serif;
+    vertical-align: center;
+    display: inline-flex;
+    padding: 5px;
+}
+
+.contactBlock {
+    display: flex;
+    width: 500px;
+    height: 50px;
+    padding: 10px;
+    margin-left: 40px;
+    background-color: cornflowerblue;
+    border-radius: 50px;
+    border: 2px solid white;
+}
+.imageGender {
+    width: 25px;
+    height: 25px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+
+
+
+
+

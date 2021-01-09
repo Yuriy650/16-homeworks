@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
+import Contracts from "./Contracts/Contracts";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
-
-      </header>
+      <Contracts />
     </div>
   );
 }

@@ -1,0 +1,16 @@
+body {
+    background-color: orange;
+    font-family: sans-serif;
+}
+
+.filterContact {
+    padding: 5px;
+    margin: 40px 10px 10px 50px;
+    border-radius: 1px;
+}
+
+.check {
+    margin-top: 10px;
+    margin-left: 40px;
+    font-family: sans-serif;
+}
