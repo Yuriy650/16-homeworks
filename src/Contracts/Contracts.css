@@ -12,3 +12,6 @@ body {
     margin-left: 40px;
     font-family: sans-serif;
 }
+input .check:checked {
+    border-color: #61dafb;
+}

@@ -5,7 +5,7 @@ import Contracts from "./Contracts/Contracts";
 function App() {
     return (
         <div className="App">
-            <Contracts/>
+            <Contracts />
         </div>
     );
 }
