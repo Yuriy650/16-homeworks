@@ -5,7 +5,6 @@ import Contact from "../Contact/Contact";
 const MALE = "https://www.flaticon.com/svg/static/icons/svg/1340/1340619.svg";
 const FEMALE = "https://www.flaticon.com/svg/static/icons/svg/766/766514.svg";
 const NONE = "https://cdn.emojidex.com/emoji/seal/question.png?1417137869";
-let getGender = [];
 const contacts = [{
     firstName: "Барней",
     lastName: "Стинсовський",
@@ -50,10 +49,32 @@ const contacts = [{
     gender: "male",
     imageGender: MALE
 }]
+let getGender = contacts;
+
 class Contracts extends Component {
     state = {
         contacts: contacts,
-        search: ''
+        search: '',
+        male: true,
+        female: true,
+        none: true
+    }
+    getContacts = (e) => {
+        let checkContacts = contacts.filter((contact) =>
+            contact.gender === e.target.value
+        )
+        checkContacts.forEach(elem => {
+            if (!getGender.includes(elem)) {
+                getGender.push(elem)
+            } else {
+                for (let i = 0; i < getGender.length; i++) {
+                    if (getGender[i] === elem) {
+                        getGender = getGender.slice(0, i).concat(getGender.slice(i + 1))
+                    }
+                }
+            }
+        })
+        this.setState({contacts: getGender})
     }
     handleSearchChange = (e) => {
         let changeContacts = contacts.filter((contact) =>
@@ -64,21 +85,23 @@ class Contracts extends Component {
         this.setState({contacts: changeContacts, search: e.target.value});
     }
     handleSearchGender = (e) => {
-        let checkContacts = contacts.filter((contact) =>
-            contact.gender === e.target.value
-        )
-        checkContacts.forEach(elem => {
-            if (!getGender.includes(elem)) {
-                getGender.push(elem)
-            } else {
-                for (let i = 0; i < getGender.length; i++) {
-                    if (getGender[i] === elem) {
-                        getGender = getGender.slice(0, i).concat(getGender.slice(i+1))
-                    }
-                }
-            }
-        })
-        this.setState({contacts: getGender})
+        switch (e.target.value) {
+            case 'male':
+                this.setState({male: !this.state.male});
+                this.getContacts(e);
+                break;
+            case 'female':
+                this.setState({female: !this.state.female});
+                this.getContacts(e);
+                break;
+            case 'none':
+                this.setState({none: !this.state.none});
+                this.getContacts(e);
+                break;
+            default:
+                console.log('немає даних');
+        }
+
     }
     render() {
         console.log(...this.state.contacts);
@@ -88,13 +111,13 @@ class Contracts extends Component {
                        onChange={this.handleSearchChange}/>
                 <label>Знайти контакти</label>
                 <p className="gender">
-                    <input className="check" type="checkbox" value="male" name="male"
+                    <input className="check" type="checkbox" value="male" name="male" checked={this.state.male}
                            onChange={this.handleSearchGender}/>
                     <label>ч</label>
-                    <input className="check" type="checkbox" value="female" name="female"
+                    <input className="check" type="checkbox" value="female" name="female" checked={this.state.female}
                            onChange={this.handleSearchGender}/>
                     <label>ж</label>
-                    <input className="check" type="checkbox" value="none" name="none"
+                    <input className="check" type="checkbox" value="none" name="none" checked={this.state.none}
                            onChange={this.handleSearchGender}/>
                     <label>не вказана</label>
                 </p>
@@ -105,4 +128,5 @@ class Contracts extends Component {
         )
     }
 }
+
 export default Contracts;
